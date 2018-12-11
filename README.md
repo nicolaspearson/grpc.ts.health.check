@@ -18,11 +18,11 @@ npm install grpc-ts-health-check --save
 
 ```typescript
 import * as grpc from 'grpc';
-import { GrpcHealthCheck, HealthService, ServingStatus } from 'grpc-ts-health-check';
+import { GrpcHealthCheck, HealthService, HealthCheckResponse } from 'grpc-ts-health-check';
 
 const serviceName = 'auth.Authenticator';
 const healthCheckStatusMap = {
-	serviceName: ServingStatus.UNKNOWN
+	serviceName: HealthCheckResponse.ServingStatus.UNKNOWN
 };
 
 function start(): grpc.Server {
@@ -31,7 +31,7 @@ function start(): grpc.Server {
 
 	// Register the health service
 	const grpcHealthCheck = new GrpcHealthCheck(healthCheckStatusMap);
-	grpcHealthCheck.setStatus(serviceName, ServingStatus.SERVING);
+	grpcHealthCheck.setStatus(serviceName, HealthCheckResponse.ServingStatus.SERVING);
 	server.addService(HealthService, grpcHealthCheck);
 
 	// Bind and start the server
