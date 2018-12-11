@@ -26,19 +26,18 @@ const healthCheckStatusMap = {
 };
 
 function start(): grpc.Server {
-	try {
-		// Create the server
-		const server: grpc.Server = new grpc.Server();
+	// Create the server
+	const server: grpc.Server = new grpc.Server();
 
-		// Register the health service
-		const grpcHealthCheck = new GrpcHealthCheck(healthCheckStatusMap);
-		grpcHealthCheck.setStatus(serviceName, ServingStatus.SERVING);
-		server.addService(HealthService, grpcHealthCheck);
+	// Register the health service
+	const grpcHealthCheck = new GrpcHealthCheck(healthCheckStatusMap);
+	grpcHealthCheck.setStatus(serviceName, ServingStatus.SERVING);
+	server.addService(HealthService, grpcHealthCheck);
 
-		// Bind and start the server
-		server.bind('localhost:9090', grpc.ServerCredentials.createInsecure());
-		server.start();
+	// Bind and start the server
+	server.bind('localhost:9090', grpc.ServerCredentials.createInsecure());
+	server.start();
 
-		return server;
+	return server;
 }
 ```
