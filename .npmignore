@@ -1,0 +1,15 @@
+# Ignore
+*.ts
+*.map
+.vscode/
+test/
+tsconfig.json
+*.tgz
+*.log
+.editorconfig
+.prettierrc
+tslint.json
+
+# Keep
+!index.d.ts
+!src/index.js
