@@ -1,5 +1,6 @@
 # Ignore
 *.ts
+*.sh
 *.map
 .vscode/
 test/
@@ -12,4 +13,5 @@ tslint.json
 
 # Keep
 !index.d.ts
+!*.d.ts
 !src/index.js

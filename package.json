@@ -1,6 +1,6 @@
 {
 	"name": "grpc-ts-health-check",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"description": "An implementation of gRPC health checks, written in typescript.",
 	"main": "src/index.js",
 	"scripts": {

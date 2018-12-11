@@ -1,7 +1,7 @@
 import * as grpc from 'grpc';
 
-import { HealthClient, HealthService } from './proto/health_grpc_pb';
-import { HealthCheckRequest, HealthCheckResponse } from './proto/health_pb';
+import { HealthClient, HealthService } from './src/proto/health_grpc_pb';
+import { HealthCheckRequest, HealthCheckResponse } from './src/proto/health_pb';
 
 export = GrpcHealthCheck;
 
