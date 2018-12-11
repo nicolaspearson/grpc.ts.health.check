@@ -18,7 +18,7 @@ npm install grpc-ts-health-check --save
 
 ```typescript
 import * as grpc from 'grpc';
-import { GrpcHealthCheck, HealthService, HealthCheckResponse } from 'grpc-ts-health-check';
+import { GrpcHealthCheck, HealthCheckResponse, HealthService } from 'grpc-ts-health-check';
 
 const serviceName = 'auth.Authenticator';
 const healthCheckStatusMap = {

@@ -29,5 +29,4 @@ class GrpcHealthCheck {
 	}
 }
 
-const ServingStatus = HealthCheckResponse.ServingStatus;
-export { GrpcHealthCheck, HealthClient, HealthService, ServingStatus };
+export { GrpcHealthCheck, HealthClient, HealthService, HealthCheckResponse };
