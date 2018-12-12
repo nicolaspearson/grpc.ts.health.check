@@ -12,4 +12,4 @@ declare class GrpcHealthCheck {
 	): void;
 }
 
-export { GrpcHealthCheck, HealthClient, HealthService, HealthCheckResponse };
+export { GrpcHealthCheck, HealthCheckRequest, HealthCheckResponse, HealthClient, HealthService };
