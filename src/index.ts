@@ -9,14 +9,14 @@ class GrpcHealthCheck {
 		// Empty
 	}
 
-	public setStatus(service: string, status: number) {
+	public setStatus(service: string, status: number): void {
 		this.statusMap[service] = status;
 	}
 
 	public check(
 		call: grpc.ServerUnaryCall<HealthCheckRequest>,
 		callback: grpc.sendUnaryData<HealthCheckResponse>
-	) {
+	): void {
 		const service: string = call.request.getService();
 		const status: number = this.statusMap[service];
 		if (!status) {

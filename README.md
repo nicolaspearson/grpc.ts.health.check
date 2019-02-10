@@ -1,5 +1,13 @@
 # gRPC Health Check
 
+[![License][license-image]][license-url]
+[![Current Version](https://img.shields.io/npm/v/grpc-ts-health-check.svg)](https://www.npmjs.com/package/grpc-ts-health-check)
+[![npm](https://img.shields.io/npm/dw/grpc-ts-health-check.svg)](https://www.npmjs.com/package/grpc-ts-health-check)
+![](https://img.shields.io/bundlephobia/min/grpc-ts-health-check.svg?style=flat)
+
+[license-url]: https://opensource.org/licenses/MIT
+[license-image]: https://img.shields.io/npm/l/make-coverage-badge.svg
+
 An implementation of gRPC health checks, written in typescript.
 
 ### Installation
