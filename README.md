@@ -10,16 +10,22 @@
 
 An implementation of gRPC health checks, written in typescript.
 
+It is assumed that you are using the `grpc` library.
+
 ### Installation
 
 ```
 npm install grpc-ts-health-check --save
 ```
 
+Install the `grpc` library:
+
+```
+npm install grpc --save
+```
+
 ### Dependencies
 
-- [Google Protobuf](https://www.npmjs.com/package/google-protobuf): Protocol Buffers: Google's data interchange format.
-- [gRPC](https://www.npmjs.com/package/grpc): Node.js gRPC Library.
 - [gRPC Boom](https://www.npmjs.com/package/grpc-boom): A zero dependency library to help create gRPC-friendly error objects.
 
 ### Usage
