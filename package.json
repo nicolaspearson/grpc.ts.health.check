@@ -1,6 +1,6 @@
 {
 	"name": "grpc-ts-health-check",
-	"version": "1.0.12",
+	"version": "1.0.13",
 	"description": "An implementation of gRPC health checks, written in typescript.",
 	"main": "src/index.js",
 	"scripts": {
@@ -25,13 +25,13 @@
 	"author": "Nicolas Pearson",
 	"license": "MIT",
 	"dependencies": {
-		"grpc-boom": "~1.0.20"
+		"grpc-boom": "~1.0.21"
 	},
 	"devDependencies": {
 		"@types/google-protobuf": "~3.2.7",
-		"@types/node": "~11.13.7",
+		"@types/node": "~11.13.9",
 		"google-protobuf": "~3.7.1",
-		"grpc": "~1.20.0",
+		"grpc": "~1.20.2",
 		"prettier": "~1.17.0",
 		"protobufjs": "~6.8.8",
 		"ts-node": "~8.1.0",
