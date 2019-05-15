@@ -26,6 +26,7 @@ npm install grpc --save
 
 ### Dependencies
 
+- [Google Protobuf](https://www.npmjs.com/package/google-protobuf): Protocol Buffers - Google's data interchange format.
 - [gRPC Boom](https://www.npmjs.com/package/grpc-boom): A zero dependency library to help create gRPC-friendly error objects.
 
 ### Usage
