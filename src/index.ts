@@ -9,7 +9,7 @@ class GrpcHealthCheck {
 		// Empty
 	}
 
-	public setStatus(service: string, status: number): void {
+	private setStatus(service: string, status: number): void {
 		this.statusMap[service] = status;
 	}
 
@@ -20,12 +20,21 @@ class GrpcHealthCheck {
 		const service: string = call.request.getService();
 		const status: number = this.statusMap[service];
 		if (!status) {
-			callback(GrpcBoom.notFound(`Status not found for service: ${service}`), null);
+			callback(GrpcBoom.notFound(`Unknown service: ${service}`), null);
 		} else {
 			const response: HealthCheckResponse = new HealthCheckResponse();
 			response.setStatus(status);
 			callback(null, response);
 		}
+	}
+
+	public watch(
+		call: grpc.ServerUnaryCall<HealthCheckRequest>,
+		callback: grpc.sendUnaryData<HealthCheckResponse>
+	): void {
+		const service: string = call.request.getService();
+		// TODO: Complete implementation
+		this.setStatus(service, HealthCheckResponse.ServingStatus.UNKNOWN);
 	}
 }
 
