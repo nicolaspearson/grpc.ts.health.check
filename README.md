@@ -46,7 +46,7 @@ function start(): grpc.Server {
 
 	// Register the health service
 	const grpcHealthCheck = new GrpcHealthCheck(healthCheckStatusMap);
-	grpcHealthCheck.setStatus(serviceName, HealthCheckResponse.ServingStatus.SERVING);
+	grpcHealthCheck.watch(serviceName);
 	server.addService(HealthService, grpcHealthCheck);
 
 	// Bind and start the server
