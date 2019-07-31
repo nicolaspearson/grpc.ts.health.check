@@ -34,7 +34,13 @@ class GrpcHealthCheck {
 	): void {
 		const service: string = call.request.getService();
 		// TODO: Complete implementation
-		this.setStatus(service, HealthCheckResponse.ServingStatus.UNKNOWN);
+		const status: number = HealthCheckResponse.ServingStatus.UNKNOWN;
+		this.setStatus(service, status);
+		// Check the status of the service
+		// Send the initial response
+		const response: HealthCheckResponse = new HealthCheckResponse();
+		response.setStatus(status);
+		callback(null, response);
 	}
 }
 
