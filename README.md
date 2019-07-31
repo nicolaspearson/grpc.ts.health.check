@@ -46,12 +46,28 @@ function start(): grpc.Server {
 
 	// Register the health service
 	const grpcHealthCheck = new GrpcHealthCheck(healthCheckStatusMap);
-	grpcHealthCheck.watch(serviceName);
 	server.addService(HealthService, grpcHealthCheck);
 
 	// Bind and start the server
 	server.bind('localhost:9090', grpc.ServerCredentials.createInsecure());
 	server.start();
+
+	// Check the health status
+	const healthClient = new HealthClient(`${host}:${port}`, grpc.credentials.createInsecure());
+	const request = new HealthCheckRequest();
+	request.setService(serviceName);
+	healthClient.check(request, (error: Error | null, response: HealthCheckResponse) => {
+		if (error) {
+			AppLogger.logger.error('Contact Service: Health Check Failed', error);
+		} else {
+			AppLogger.logger.debug(`Contact Service: Health Check Status: ${response.getStatus()}`);
+		}
+	});
+	// Watch health status changes
+	const healthStream = healthClient.watch(request);
+	healthStream.on('data', (response: HealthCheckResponse) => {
+		AppLogger.logger.debug(`Contact Service: Health Check Status: ${response.getStatus()}`);
+	});
 
 	return server;
 }

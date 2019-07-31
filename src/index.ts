@@ -56,14 +56,14 @@ class GrpcHealthCheck implements IHealthServer {
 		} else {
 			updatedStatus = this.statusMap[service];
 		}
-
+		// Add to the watch status map
 		this.watchStatusMap[service] = updatedStatus;
-		let lastStatus = -1;
-		if (!this.watchErrorMap[service]) {
-			// tslint:disable no-console
-			console.log('Next Tick');
-			const callback = () => {
-				lastStatus = this.statusMap[service];
+
+		// tslint:disable no-console
+		const interval = setInterval(() => {
+			if (!this.watchErrorMap[service]) {
+				console.log('Next Tick');
+				const lastStatus = this.statusMap[service] || -1;
 				if (lastStatus !== updatedStatus) {
 					console.log('Sending Status: ' + updatedStatus);
 					// Status has changed
@@ -75,12 +75,12 @@ class GrpcHealthCheck implements IHealthServer {
 						}
 					});
 				}
-			};
-			process.nextTick(callback);
-		} else {
-			// Terminate the stream
-			call.end(this.watchErrorMap[service]);
-		}
+			} else {
+				clearInterval(interval);
+				// Terminate the stream
+				call.end(this.watchErrorMap[service]);
+			}
+		}, 1000);
 	}
 }
 
