@@ -46,21 +46,20 @@ class GrpcHealthCheck implements IHealthServer {
 		call: grpc.ServerWriteableStream<HealthCheckRequest>
 	): void {
 		const service: string = call.request.getService();
-		// Updated status is used for getting service status updates.
-		let updatedStatus = HealthCheckResponse.ServingStatus.SERVING;
-		if (!this.statusMap[service]) {
-			// Set the initial status
-			updatedStatus = HealthCheckResponse.ServingStatus.SERVICE_UNKNOWN;
-			this.setStatus(service, updatedStatus);
-			this.sendStatusResponse(call, updatedStatus);
-		} else {
-			updatedStatus = this.statusMap[service];
-		}
-		// Add to the watch status map
-		this.watchStatusMap[service] = updatedStatus;
-
 		// tslint:disable no-console
 		const interval = setInterval(() => {
+			// Updated status is used for getting service status updates.
+			let updatedStatus = HealthCheckResponse.ServingStatus.SERVING;
+			if (!this.statusMap[service]) {
+				// Set the initial status
+				updatedStatus = HealthCheckResponse.ServingStatus.SERVICE_UNKNOWN;
+				this.setStatus(service, updatedStatus);
+				this.sendStatusResponse(call, updatedStatus);
+			} else {
+				updatedStatus = this.statusMap[service];
+			}
+			// Add to the watch status map
+			this.watchStatusMap[service] = updatedStatus;
 			if (!this.watchErrorMap[service]) {
 				console.log('Next Tick');
 				const lastStatus = this.statusMap[service] || -1;
