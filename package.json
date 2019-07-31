@@ -1,6 +1,6 @@
 {
 	"name": "grpc-ts-health-check",
-	"version": "2.0.0",
+	"version": "2.0.0-beta.0",
 	"description": "An implementation of gRPC health checks, written in typescript.",
 	"main": "src/index.js",
 	"scripts": {
@@ -32,9 +32,9 @@
 	},
 	"devDependencies": {
 		"@types/google-protobuf": "~3.7.1",
-		"@types/node": "~12.6.2",
+		"@types/node": "~12.6.8",
 		"grpc": "~1.22.2",
-		"npm-check-updates": "~3.1.18",
+		"npm-check-updates": "~3.1.20",
 		"prettier": "~1.18.2",
 		"protobufjs": "~6.8.8",
 		"ts-node": "~8.3.0",
