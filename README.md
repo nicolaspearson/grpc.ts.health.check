@@ -31,28 +31,89 @@ npm install grpc --save
 
 ### Usage
 
+## Methods
+
+Below is a list of available methods:
+
+### `watch(request)`
+
+Set the initial status of the service and continues to watch for any changes.
+
+- `request` - the `HealthCheckRequest` object.
+
+```typescript
+const healthClient = new HealthClient(`${host}:${port}`, grpc.credentials.createInsecure());
+const request = new HealthCheckRequest();
+request.setService(serviceName);
+const healthStream = healthClient.watch(request);
+healthStream.on('data', (response: HealthCheckResponse) => {
+  AppLogger.logger.debug(`Health Status: ${response.getStatus()}`);
+});
+```
+
+### `check(request)`
+
+Checks the status of the service once.
+
+- `request` - the `HealthCheckRequest` object.
+
+```typescript
+const healthClient = new HealthClient(`${host}:${port}`, grpc.credentials.createInsecure());
+const request = new HealthCheckRequest();
+request.setService(serviceName);
+healthClient.check(request, (error: Error | null, response: HealthCheckResponse) => {
+  if (error) {
+    AppLogger.logger.error('Health Check Failed', error);
+  } else {
+    AppLogger.logger.debug(`Health Status: ${response.getStatus()}`);
+  }
+});
+```
+
+## Example
+
 ```typescript
 import * as grpc from 'grpc';
 import { GrpcHealthCheck, HealthCheckResponse, HealthService } from 'grpc-ts-health-check';
 
 const serviceName = 'auth.Authenticator';
 const healthCheckStatusMap = {
-	serviceName: HealthCheckResponse.ServingStatus.UNKNOWN
+  serviceName: HealthCheckResponse.ServingStatus.UNKNOWN
 };
 
 function start(): grpc.Server {
-	// Create the server
-	const server: grpc.Server = new grpc.Server();
+  // Create the server
+  const server: grpc.Server = new grpc.Server();
 
-	// Register the health service
-	const grpcHealthCheck = new GrpcHealthCheck(healthCheckStatusMap);
-	grpcHealthCheck.setStatus(serviceName, HealthCheckResponse.ServingStatus.SERVING);
-	server.addService(HealthService, grpcHealthCheck);
+  // Register the health service
+  const grpcHealthCheck = new GrpcHealthCheck(healthCheckStatusMap);
+  server.addService(HealthService, grpcHealthCheck);
 
-	// Bind and start the server
-	server.bind('localhost:9090', grpc.ServerCredentials.createInsecure());
-	server.start();
+  // Bind and start the server
+  server.bind('localhost:9090', grpc.ServerCredentials.createInsecure());
+  server.start();
 
-	return server;
+  // Check the health status
+  const healthClient = new HealthClient(`${host}:${port}`, grpc.credentials.createInsecure());
+  const request = new HealthCheckRequest();
+  request.setService(serviceName);
+  // Watch health status - streaming request
+  const healthStream = healthClient.watch(request);
+  healthStream.on('data', (response: HealthCheckResponse) => {
+    AppLogger.logger.debug(`Authenticator Service: Health Status: ${response.getStatus()}`);
+  });
+  // Check health status - single request
+  setTimeout(() => {
+    healthClient.check(request, (error: Error | null, response: HealthCheckResponse) => {
+      if (error) {
+        AppLogger.logger.error('Authenticator Service: Health Check Failed', error);
+      } else {
+        AppLogger.logger.debug(
+          `Authenticator Service: Health Check Status: ${response.getStatus()}`
+        );
+      }
+    });
+  }, 5000);
+  return server;
 }
 ```

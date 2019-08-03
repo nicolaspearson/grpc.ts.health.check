@@ -1,6 +1,6 @@
 {
 	"name": "grpc-ts-health-check",
-	"version": "1.0.14",
+	"version": "2.0.0",
 	"description": "An implementation of gRPC health checks, written in typescript.",
 	"main": "src/index.js",
 	"scripts": {
@@ -8,7 +8,9 @@
 		"build:ts": "tsc --rootDir ./src/",
 		"prettier": "prettier --write \"src/**/*.{ts,tsx,css}\"",
 		"tslint": "tslint --fix -c tslint.json -p tsconfig.json",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"ncu": "ncu",
+		"ncu:u": "ncu -u"
 	},
 	"keywords": [
 		"grpc",
@@ -25,17 +27,18 @@
 	"author": "Nicolas Pearson",
 	"license": "MIT",
 	"dependencies": {
-		"google-protobuf": "~3.7.1",
-		"grpc-boom": "~1.0.21"
+		"google-protobuf": "~3.9.0",
+		"grpc-boom": "~1.0.23"
 	},
 	"devDependencies": {
-		"@types/google-protobuf": "~3.2.7",
-		"@types/node": "~12.0.2",
-		"grpc": "~1.20.3",
-		"prettier": "~1.17.1",
+		"@types/google-protobuf": "~3.7.1",
+		"@types/node": "~12.6.9",
+		"grpc": "~1.22.2",
+		"npm-check-updates": "~3.1.20",
+		"prettier": "~1.18.2",
 		"protobufjs": "~6.8.8",
-		"ts-node": "~8.1.0",
-		"tslint": "~5.16.0",
-		"typescript": "~3.4.5"
+		"ts-node": "~8.3.0",
+		"tslint": "~5.18.0",
+		"typescript": "~3.5.3"
 	}
 }
