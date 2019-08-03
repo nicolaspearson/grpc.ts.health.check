@@ -59,11 +59,8 @@ class GrpcHealthCheck implements IHealthServer {
 			// Add to the watch status map
 			this.watchStatusMap[service] = updatedStatus;
 			if (!this.watchErrorMap[service]) {
-				console.log('Health Status: ' + updatedStatus);
 				const lastStatus = this.statusMap[service] || -1;
-				console.log('Old Status: ' + lastStatus);
 				if (lastStatus !== updatedStatus) {
-					console.log('Sending Status: ' + updatedStatus);
 					// Status has changed
 					this.setStatus(service, updatedStatus);
 					this.sendStatusResponse(call, updatedStatus, (error: Error | null | undefined) => {
