@@ -55,8 +55,6 @@ class GrpcHealthCheck implements IHealthServer {
 				updatedStatus = HealthCheckResponse.ServingStatus.SERVICE_UNKNOWN;
 				this.setStatus(service, updatedStatus);
 				this.sendStatusResponse(call, updatedStatus);
-			} else {
-				this.statusMap[service] = updatedStatus;
 			}
 			// Add to the watch status map
 			this.watchStatusMap[service] = updatedStatus;
