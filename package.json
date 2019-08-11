@@ -27,14 +27,14 @@
 	"author": "Nicolas Pearson",
 	"license": "MIT",
 	"dependencies": {
-		"google-protobuf": "~3.9.0",
+		"google-protobuf": "~3.9.1",
 		"grpc-boom": "~1.0.23"
 	},
 	"devDependencies": {
 		"@types/google-protobuf": "~3.7.1",
-		"@types/node": "~12.6.9",
+		"@types/node": "~12.7.1",
 		"grpc": "~1.22.2",
-		"npm-check-updates": "~3.1.20",
+		"npm-check-updates": "~3.1.21",
 		"prettier": "~1.18.2",
 		"protobufjs": "~6.8.8",
 		"ts-node": "~8.3.0",
