@@ -93,16 +93,22 @@ function start(): grpc.Server {
   server.bind('localhost:9090', grpc.ServerCredentials.createInsecure());
   server.start();
 
-  // Check the health status
+  // Create the health client
   const healthClient = new HealthClient(`${host}:${port}`, grpc.credentials.createInsecure());
   const request = new HealthCheckRequest();
   request.setService(serviceName);
+
   // Watch health status - streaming request
+  // This will set the initial health status
+  // and continue to watch the service for changes.
   const healthStream = healthClient.watch(request);
   healthStream.on('data', (response: HealthCheckResponse) => {
     AppLogger.logger.debug(`Authenticator Service: Health Status: ${response.getStatus()}`);
   });
+
   // Check health status - single request
+  // This will provide the current health status
+  // of the service when the request is executed.
   setTimeout(() => {
     healthClient.check(request, (error: Error | null, response: HealthCheckResponse) => {
       if (error) {
