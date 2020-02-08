@@ -27,7 +27,7 @@
 	"author": "Nicolas Pearson",
 	"license": "MIT",
 	"dependencies": {
-		"google-protobuf": "~3.10.0",
+		"google-protobuf": "~3.11.0",
 		"grpc-boom": "~1.0.26"
 	},
 	"devDependencies": {
