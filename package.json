@@ -32,7 +32,7 @@
 	},
 	"devDependencies": {
 		"@types/google-protobuf": "~3.7.2",
-		"@types/node": "~12.12.11",
+		"@types/node": "~12.12.26",
 		"grpc": "~1.24.2",
 		"npm-check-updates": "~3.2.1",
 		"prettier": "~1.19.1",
