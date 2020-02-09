@@ -1,0 +1,5 @@
+{
+  "extends": ["config:base"],
+  "rangeStrategy": "bump",
+  "branchPrefix": "renovate-"
+}
