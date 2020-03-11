@@ -36,7 +36,7 @@
 		"grpc": "^1.24.2",
 		"npm-check-updates": "^4.0.2",
 		"prettier": "^1.19.1",
-		"protobufjs": "^6.8.8",
+		"protobufjs": "^6.8.9",
 		"ts-node": "^8.6.2",
 		"tslint": "^6.0.0",
 		"typescript": "^3.8.3"
