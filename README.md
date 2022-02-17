@@ -12,6 +12,10 @@ An implementation of gRPC health checks, written in typescript.
 
 It is assumed that you are using the `grpc` library.
 
+## Notice (Deprecated)
+
+The source code for this library has been moved to: [Kalos](https://github.com/nicolaspearson/kalos/tree/main/packages/grpc-ts-health-check).
+
 ### Installation
 
 ```
